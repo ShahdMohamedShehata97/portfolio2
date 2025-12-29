@@ -78,6 +78,11 @@ restBtn.addEventListener("click", function () {
   document.documentElement.style.setProperty("--color-secondary", secondary);
   document.documentElement.style.setProperty("--color-accent", accent);
   sideBar.classList.replace("translate-x-0", "translate-x-full");
+  document.body.classList.remove(
+      "font-alexandria",
+      "font-tajawal",
+      "font-cairo"
+    );
   document.body.classList.add(`font-tajawal`);
 });
 
