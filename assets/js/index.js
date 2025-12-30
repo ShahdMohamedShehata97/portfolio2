@@ -199,24 +199,43 @@ function editIndecator(){
 }
 editIndecator()
 
-const sections = Array.from(document.querySelectorAll('section'));
+
+indecators.forEach(function(indicator, index){
+    indicator.addEventListener('click', function(){
+        start = index; 
+        getcard();
+        editIndecator()     
+    });
+});
 
 
-window.addEventListener('scroll', function(){
-  const scrollBottom = window.scrollY + window.innerHeight;
 
-  sections.forEach((section, index) => {
-    const sectionBottom = section.offsetTop + section.offsetHeight;
 
-    if (scrollBottom >= sectionBottom) {
-      navLink.forEach(link => link.classList.remove('active'));
-      navLink[index].classList.add('active');
+////sections and scrollling
+var sections = document.querySelectorAll('section');
+
+window.addEventListener('scroll', function() {
+  var scrollPos = window.scrollY || window.pageYOffset;
+
+  sections.forEach(function(section) {
+    var top = section.offsetTop;
+    var bottom = top + section.offsetHeight;
+    var id = section.getAttribute('id');
+
+    if (scrollPos >= top && scrollPos < bottom) {
+     for (var i = 0; i < navLink.length; i++) {
+      navLink[i].classList.remove("active");
+    };
+      var activeLink = document.querySelector('nav a[href="#' + id + '"]');
+      if (activeLink) activeLink.classList.add('active');
     }
   });
 });
 
 
-//scroll
+
+
+
 var main=document.getElementById('hero-section')
 var scrollToTop=document.getElementById('scroll-to-top');
 
